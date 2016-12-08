@@ -24,6 +24,8 @@
 
 - (void) searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
+    [self setShowsCancelButton:NO animated:YES];
+
     [_eventDispatcher sendTextEventWithType:RCTTextEventTypeBlur
                                    reactTag:self.reactTag
                                        text:searchBar.text
@@ -70,7 +72,6 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-  self.text = @"";
   [self resignFirstResponder];
   [self setShowsCancelButton:NO animated:YES];
 
