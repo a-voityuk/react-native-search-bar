@@ -102,6 +102,17 @@ RCT_CUSTOM_VIEW_PROPERTY(textColor, UIColor, RNSearchBar)
     }
 }
 
+RCT_CUSTOM_VIEW_PROPERTY(cancelColor, UIColor, RNSearchBar)
+{
+    if([RCTConvert UIColor:json]) {
+        if (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending)) {
+            [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[RNSearchBar class]]] setTintColor:[RCTConvert UIColor:json]];
+        } else {
+            [[UIBarButtonItem appearanceWhenContainedIn: [RNSearchBar class], nil] setTintColor:[RCTConvert UIColor:json]];
+        }
+    }
+}
+
 - (NSDictionary *)constantsToExport
 {
   return @{
