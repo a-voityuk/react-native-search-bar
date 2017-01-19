@@ -98,7 +98,10 @@ RCT_CUSTOM_VIEW_PROPERTY(textFieldBackgroundColor, UIColor, RNSearchBar)
 RCT_CUSTOM_VIEW_PROPERTY(textColor, UIColor, RNSearchBar)
 {
     if([RCTConvert UIColor:json]) {
-       [[UITextField appearanceWhenContainedIn:[RNSearchBar class], nil] setDefaultTextAttributes:@{NSForegroundColorAttributeName:[RCTConvert UIColor:json]}];
+       [[UITextField appearanceWhenContainedIn:[RNSearchBar class], nil] setDefaultTextAttributes:@{
+            NSForegroundColorAttributeName:[RCTConvert UIColor:json],
+            NSFontAttributeName : [UIFont systemFontOfSize:15]
+       }];
     }
 }
 
