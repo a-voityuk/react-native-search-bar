@@ -75,22 +75,12 @@ RCT_CUSTOM_VIEW_PROPERTY(editable, BOOL, RNSearchBar)
 RCT_CUSTOM_VIEW_PROPERTY(textFieldBackgroundColor, UIColor, RNSearchBar)
 {
   if ([RCTConvert UIColor:json]) {
-    // logic borrowed from http://stackoverflow.com/a/22266150/395989
-    CGSize size = CGSizeMake(34, 34);
-    // create context with transparent background
-    UIGraphicsBeginImageContextWithOptions(size, NO, 1);
+    UIImage *image = [UIImage imageNamed:@"search_bgr"];
 
-    // Add a clip before drawing anything, in the shape of an rounded rect
-    [[UIBezierPath bezierPathWithRoundedRect:CGRectMake(0,0, 34, 34)
-                                cornerRadius:5.0] addClip];
-    [[RCTConvert UIColor:json]  setFill];
-
-    UIRectFill(CGRectMake(0, 0, size.width, size.height));
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-
-    [view setSearchFieldBackgroundImage:image forState:UIControlStateNormal];
-    [view setSearchTextPositionAdjustment:UIOffsetMake(8.0, 0.0)];
+    if (image) {
+      [view setSearchFieldBackgroundImage:image forState:UIControlStateNormal];
+      [view setSearchTextPositionAdjustment:UIOffsetMake(8.0, 0.0)];
+    }
   }
 }
 
